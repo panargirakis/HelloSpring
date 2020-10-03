@@ -13,11 +13,13 @@ plugins {
     id 'org.springframework.boot' version '2.3.4.RELEASE'
 }
 
+wrapper{
+    gradleVersion = '6.6.1'
+    distributionType = Wrapper.DistributionType.BIN
+}
+
 group 'com.pargyrakis'
 version '1.0'
-
-group 'org.example'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
