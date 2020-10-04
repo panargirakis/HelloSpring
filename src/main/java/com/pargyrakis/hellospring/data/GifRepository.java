@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 @Component
@@ -30,5 +31,14 @@ public class GifRepository {
 
     public List<Gif> getAllGifs() {
         return ALL_GIFS;
+    }
+
+    public List<Gif> findByCategoryId(int catId) {
+        List<Gif> gifsWithMatchingId = new LinkedList<>();
+        for (Gif gif : ALL_GIFS) {
+            if (gif.getCategoryId() == catId)
+                gifsWithMatchingId.add(gif);
+        }
+        return gifsWithMatchingId;
     }
 }
