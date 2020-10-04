@@ -23,7 +23,7 @@ public class CategoryController {
     }
 
     @RequestMapping("/categories/{id}")
-    public String category(@PathVariable int id, ModelMap modelMap) {
+    public String categoryDetail(@PathVariable int id, ModelMap modelMap) {
         modelMap.put("category", categoryRepository.findById(id));
         modelMap.put("gifs", gifRepository.findByCategoryId(id));
         return "category";
