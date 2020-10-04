@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class CategoryController {
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
+    private final GifRepository gifRepository;
 
     @Autowired
-    private GifRepository gifRepository;
+    public CategoryController(CategoryRepository categoryRepository, GifRepository gifRepository) {
+        this.categoryRepository = categoryRepository;
+        this.gifRepository = gifRepository;
+    }
 
     @RequestMapping("/categories")
     public String listCategories(ModelMap modelMap) {

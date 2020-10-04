@@ -14,9 +14,12 @@ import java.util.Optional;
 
 @Controller
 public class HSController {
+    private final GifRepository gifRepository;
 
-    @Autowired  // dependency injection
-    private GifRepository gifRepository;
+    @Autowired
+    public HSController(GifRepository gifRepository) {
+        this.gifRepository = gifRepository;
+    }
 
     @RequestMapping
     public String listGifs(@RequestParam(required = false) Optional<String> q, ModelMap modelMap) {
