@@ -1,6 +1,7 @@
 package com.pargyrakis.hellospring.data;
 
 import com.pargyrakis.hellospring.model.Category;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -16,6 +17,16 @@ public class CategoryRepository {
 
     public List<Category> getAllCategories() {
         return this.ALL_CATEGORIES;
+    }
+
+    @Nullable
+    public Category findById(int id) {
+        for (Category cat : this.ALL_CATEGORIES) {
+            if (cat.getId() == id) {
+                return cat;
+            }
+        }
+        return null;
     }
 
 }
