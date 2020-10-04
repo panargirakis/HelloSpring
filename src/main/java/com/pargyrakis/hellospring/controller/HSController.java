@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class HSController {
@@ -17,9 +19,14 @@ public class HSController {
     private GifRepository gifRepository;
 
     @RequestMapping
-    public String listGifs(ModelMap modelMap) {
-        List<Gif> allGifs = gifRepository.getAllGifs();
-        modelMap.put("gifs", allGifs);
+    public String listGifs(@RequestParam(required = false) Optional<String> q, ModelMap modelMap) {
+        if (q.isPresent()) {
+            List<Gif> matchingGifs = gifRepository.getGifsWithSubStringInName(q.get());
+            modelMap.put("gifs", matchingGifs);
+        }
+        else {
+            modelMap.put("gifs", gifRepository.getAllGifs());
+        }
         return "home";
     }
 
@@ -29,4 +36,5 @@ public class HSController {
         modelMap.put("gif", gif);
         return "gif-details";
     }
+
 }

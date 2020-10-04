@@ -50,4 +50,14 @@ public class GifRepository {
         }
         return favoriteGifs;
     }
+
+    public List<Gif> getGifsWithSubStringInName(String substring) {
+        String substringLower = substring.toLowerCase();
+        List<Gif> matches = new LinkedList<>();
+        for (Gif gif : ALL_GIFS) {
+            if (gif.getName().toLowerCase().contains(substringLower))
+                matches.add(gif);
+        }
+        return matches;
+    }
 }
