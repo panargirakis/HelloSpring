@@ -41,4 +41,13 @@ public class GifRepository {
         }
         return gifsWithMatchingId;
     }
+
+    public List<Gif> getAllFavorites() {
+        List<Gif> favoriteGifs = new LinkedList<>();
+        for (Gif gif : ALL_GIFS) {
+            if (gif.isFavorite())
+                favoriteGifs.add(gif);
+        }
+        return favoriteGifs;
+    }
 }
